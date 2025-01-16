@@ -1,2 +1,2 @@
 # golang
-Golang project for train 
+Golang projects for train 
