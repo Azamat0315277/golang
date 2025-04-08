@@ -69,6 +69,10 @@ func Signup() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "this email or phone number already exists"})
 		}
 
+		// Hash the password before storing
+		hashedPassword := HashPassword(*user.Password)
+		user.Password = &hashedPassword
+
 		user.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.ID = primitive.NewObjectID()
@@ -107,7 +111,7 @@ func Login() gin.HandlerFunc {
 		}
 		passwordIsValid, msg := VerifyPassword(*user.Password, *foundUser.Password)
 		defer cancel()
-		if passwordIsValid != true {
+		if !passwordIsValid {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			return
 		}

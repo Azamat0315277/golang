@@ -1,2 +1,3 @@
 .apiConfig
 .DS_Store
+.env
