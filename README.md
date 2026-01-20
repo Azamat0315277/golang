@@ -28,12 +28,16 @@ Weather information service integrating with OpenWeatherMap API to fetch current
 ### 8. **custom-db**
 Custom file-based database engine with REST API interface for basic CRUD operations.
 
+### 9. **kafka-example**
+Kafka producer-consumer example demonstrating message queue patterns with a Fiber REST API producer and Sarama-based worker consumer.
+
 ## Technologies Used
 
 - **Frameworks**: Fiber, Gin, net/http
 - **Databases**: MongoDB, Redis, SQLite, File-based storage
 - **Auth**: JWT (JSON Web Tokens)
 - **ORMs**: GORM
+- **Message Queues**: Kafka (Sarama)
 
 ## Purpose
 
