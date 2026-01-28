@@ -31,6 +31,9 @@ Custom file-based database engine with REST API interface for basic CRUD operati
 ### 9. **kafka-example**
 Kafka producer-consumer example demonstrating message queue patterns with a Fiber REST API producer and Sarama-based worker consumer.
 
+### 10. **rabbitMQ-examples**
+RabbitMQ producer-consumer examples demonstrating queue and publisher/subscriber patterns
+
 ## Technologies Used
 
 - **Frameworks**: Fiber, Gin, net/http
