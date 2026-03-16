@@ -1,0 +1,166 @@
+# ============================================
+# GraphQL Query & Mutation Examples
+# for graphql-job-board
+# ============================================
+# Default endpoint: http://localhost:8080/query
+# Playground:       http://localhost:8080/
+# ============================================
+
+
+# ---------- QUERIES ----------
+
+# Get all job listings
+query GetAllJobs {
+  jobs {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+
+# Get all jobs (minimal fields)
+query GetAllJobsSummary {
+  jobs {
+    _id
+    title
+    company
+  }
+}
+
+# Get a single job by ID
+# Replace the ID with an actual ObjectID from your database
+query GetJobById {
+  job(id: "60d5ec49f1b2c72b9c8e4a1f") {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+
+
+# ---------- MUTATIONS ----------
+
+# Create a new job listing
+mutation CreateJob {
+  createJobListing(
+    input: {
+      title: "Go Developer"
+      description: "Build high-performance APIs and services using Go, PostgreSQL, and Redis."
+      company: "GopherTech"
+      url: "https://gophertech.io/careers/go-dev"
+    }
+  ) {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+
+# Update an existing job listing (partial update)
+# Replace the ID with an actual ObjectID from your database
+mutation UpdateJobTitle {
+  updateJobListing(
+    id: "60d5ec49f1b2c72b9c8e4a1f"
+    input: {
+      title: "Senior Go Developer"
+    }
+  ) {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+
+# Update multiple fields at once
+mutation UpdateJobMultipleFields {
+  updateJobListing(
+    id: "60d5ec49f1b2c72b9c8e4a1f"
+    input: {
+      title: "Lead Backend Engineer"
+      description: "Lead a team of engineers building distributed systems in Go."
+      url: "https://gophertech.io/careers/lead-backend"
+    }
+  ) {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+
+# Delete a job listing
+# Replace the ID with an actual ObjectID from your database
+mutation DeleteJob {
+  deleteJobListing(id: "60d5ec49f1b2c72b9c8e4a1f") {
+    deletedJobId
+  }
+}
+
+
+# ---------- USING VARIABLES ----------
+# These examples show the operation + variables JSON separately.
+# In a GraphQL playground, paste the query in the editor
+# and the variables in the "Query Variables" panel.
+
+# --- Create with variables ---
+# Query:
+mutation CreateJobWithVars($input: CreateJobListingInput!) {
+  createJobListing(input: $input) {
+    _id
+    title
+    company
+  }
+}
+# Variables:
+# {
+#   "input": {
+#     "title": "Platform Engineer",
+#     "description": "Design and maintain internal developer platforms using Terraform and Kubernetes.",
+#     "company": "InfraCore",
+#     "url": "https://infracore.dev/careers/platform-eng"
+#   }
+# }
+
+# --- Get job with variables ---
+# Query:
+query GetJobWithVars($jobId: ID!) {
+  job(id: $jobId) {
+    _id
+    title
+    description
+    company
+    url
+  }
+}
+# Variables:
+# {
+#   "jobId": "60d5ec49f1b2c72b9c8e4a1f"
+# }
+
+# --- Update with variables ---
+# Query:
+mutation UpdateJobWithVars($id: ID!, $input: UpdateJobListingInput!) {
+  updateJobListing(id: $id, input: $input) {
+    _id
+    title
+    description
+    url
+  }
+}
+# Variables:
+# {
+#   "id": "60d5ec49f1b2c72b9c8e4a1f",
+#   "input": {
+#     "title": "Staff Engineer",
+#     "url": "https://example.com/careers/staff"
+#   }
+# }
