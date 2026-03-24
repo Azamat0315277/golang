@@ -1,6 +1,8 @@
 syntax = "proto3";
 package pb;
 
+option go_package = "./pb";
+
 message Order {
     message OrderProduct {
         string id  = 1;
@@ -20,7 +22,7 @@ message Order {
 message PostOrderRequest {
     message OrderProduct {
         string productId = 2;
-        uint32 quantity = 5;
+        uint32 quantity = 3;
     }
 
     string accountId = 2;

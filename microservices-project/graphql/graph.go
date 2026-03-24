@@ -2,9 +2,10 @@ package main
 
 import (
 	"microservices-project/account"
+	"microservices-project/catalog"
+	"microservices-project/order"
 
 	"github.com/99designs/gqlgen/graphql"
-	"golang.org/x/text/message/catalog"
 )
 
 type Server struct {
@@ -23,15 +24,15 @@ func NewGraphQLServer(accountUrl, catalogUrl, orderUrl string) (*Server, error) 
 	// Connect to product service
 	catalogClient, err := catalog.NewClient(catalogUrl)
 	if err != nil {
-		accountClient.close()
+		accountClient.Close()
 		return nil, err
 	}
 
 	// Connect to order service
 	orderClient, err := order.NewClient(orderUrl)
 	if err != nil {
-		accountClient.close()
-		catalogClient.close()
+		accountClient.Close()
+		catalogClient.Close()
 		return nil, err
 	}
 

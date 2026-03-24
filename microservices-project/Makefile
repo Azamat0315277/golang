@@ -25,15 +25,24 @@ proto-catalog:
 		--go-grpc_out=./pb --go-grpc_opt=paths=source_relative \
 		catalog.proto
 
+# Generate Go code from order.proto → order/pb/
+.PHONY: proto-order
+proto-order:
+	cd order && protoc \
+		--go_out=./pb --go_opt=paths=source_relative \
+		--go-grpc_out=./pb --go-grpc_opt=paths=source_relative \
+		order.proto
+
 # Generate all protobuf files
 .PHONY: proto
-proto: proto-account proto-catalog
+proto: proto-account proto-catalog proto-order
 
 # Remove all generated protobuf files
 .PHONY: proto-clean
 proto-clean:
 	rm -f account/pb/*.pb.go
 	rm -f catalog/pb/*.pb.go
+	rm -f order/pb/*.pb.go
 
 # Reinstall tools + regenerate everything from scratch
 .PHONY: proto-rebuild

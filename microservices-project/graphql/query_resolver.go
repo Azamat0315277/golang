@@ -11,7 +11,6 @@ func (r *queryResolver) Accounts(ctx context.Context, pagination *PaginationInpu
 	return nil, nil
 }
 
-func (r *queryResolver) Products(ctx context.Context, pagination *PaginationInput, query *string, id *string) ([]Product, error) {
+func (r *queryResolver) Products(ctx context.Context, pagination *PaginationInput, query *string, id *string) ([]*Product, error) {
 	return nil, nil
-
 }
